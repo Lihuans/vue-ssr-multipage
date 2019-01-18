@@ -15,7 +15,7 @@ module.exports = modules.map(moduleName => {
     },
     resolve: {
       alias: {
-        "create-api": "./create-api-client.js"
+        "create-api": "../api/create-api-client.js"
       }
     },
     optimization: {

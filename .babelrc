@@ -1,8 +1,34 @@
 {
   "presets": [
-    ["env", { "modules": false }]
+    "es2015",
+    "stage-0"
   ],
   "plugins": [
+    "transform-vue-jsx",
     "syntax-dynamic-import"
-  ]
+  ],
+  "env": {
+    "browser": {
+      "presets": [
+        [
+          "env", {
+            "targets": {
+              "browsers": ["last 2 versions", "safari >= 7"]
+            }
+          }
+        ]
+      ]
+    },
+    "node": {
+      "presets": [
+        [
+          "env", {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ]
+    }
+  }
 }

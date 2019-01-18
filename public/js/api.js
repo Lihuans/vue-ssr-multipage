@@ -1,5 +1,5 @@
 module.exports = {
-	login: '/user/login',
+	login: '/login',
 	getCities: '/interncityoptions',
 	getIndustry: '/industryoptions'
 };

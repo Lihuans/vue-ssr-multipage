@@ -23,7 +23,7 @@ module.exports = modules.map(moduleName => {
     },
     resolve: {
       alias: {
-        "create-api": "./create-api-server.js"
+        "create-api": "../api/create-api-server.js"
       }
     },
     // https://webpack.js.org/configuration/externals/#externals
