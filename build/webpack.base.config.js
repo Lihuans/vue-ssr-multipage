@@ -17,7 +17,8 @@ module.exports = function(moduleName) {
     },
     resolve: {
       alias: {
-        public: path.resolve(__dirname, "../public")
+        public: path.resolve(__dirname, "../public"),
+        '@': '..'
       }
     },
     module: {

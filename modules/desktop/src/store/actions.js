@@ -62,5 +62,18 @@ export default {
               reject(err);
           });
       });
-  }
+  },
+    getUserInfo({ commit }) {
+      return new Promise((resolve, reject ) => {
+          api.getUserInfo().then(res => {
+              console.log('rrrr===',res);
+              const data = res.msg;
+              // console.log(data);
+              commit('doLogin', data);
+              resolve();
+          }).catch(err => {
+              reject(err)
+          })
+      })
+    }
 }

@@ -26,5 +26,8 @@ export default {
   doLogin (state, userInfo) {
       // state.user = userInfo;
       console.log('userInfo===',userInfo)
-  }
+  },
+    getUserInfo (state, userInfo) {
+      state.userInfo = userInfo
+    }
 }

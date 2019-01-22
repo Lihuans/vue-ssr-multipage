@@ -2,12 +2,17 @@ import Vue from 'vue'
 import App from './App.vue'
 import { createStore } from './store'
 import { createRouter } from './router'
+import Request from './api/create-api-client'
+import utils from 'public/js/utils'
 import { sync } from 'vuex-router-sync'
 import titleMixin from './util/title'
 import * as filters from './util/filters'
 
 // mixin for handling title
 Vue.mixin(titleMixin)
+
+Vue.prototype.$axios = Request;
+Vue.prototype.$utils = utils;
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {

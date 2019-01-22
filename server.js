@@ -9,6 +9,7 @@ const isMobile = require("is-mobile");
 const resolve = file => path.resolve(__dirname, file);
 const { createBundleRenderer } = require("vue-server-renderer")
 const router = require('./server/router');
+// const logger = require('./log');
 
 const isProd = process.env.NODE_ENV === "production";
 const useMicroCache = process.env.MICRO_CACHE !== "false";
@@ -18,6 +19,8 @@ const serverInfo =
 const modules = require("./build/module-config");
 
 const app = express();
+
+// app.use(logger({}));
 
 function createRenderer(bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
@@ -124,8 +127,11 @@ function render(moduleName, req, res) {
   res.setHeader("Server", serverInfo);
 
   const handleError = err => {
+    console.log('====',err.code);
     if (err.url) {
       res.redirect(err.url);
+    } else if(err.code === 401){
+      res.redirect('/logins');
     } else if (err.code === 404) {
       res.status(404).send("404 | Page Not Found");
     } else {
@@ -151,9 +157,11 @@ function render(moduleName, req, res) {
   });
 }
 
-app.use('/',router);
+// app.use('/api',router);
+app.use(router);
 
 app.get("*", (req, res) => {
+  // console.log('---=-===',res)
   const moduleName = getModuleNameByReq(req);
 
   if (isProd) {
@@ -163,7 +171,7 @@ app.get("*", (req, res) => {
   }
 });
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8003;
 app.listen(port, () => {
   console.log(`server started at localhost:${port}`);
 });

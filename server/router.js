@@ -34,9 +34,9 @@ const api = require('../public/js/api');
 // 	});
 
 router
-	.get(api.login, (req, res) => {
+	.get(api.userinfo, (req, res) => {
 		console.log('req====', req)
-		res.send('hahahaha')
+		// res.send('hahahaha')
 	});
 
 module.exports = router;

@@ -33,8 +33,8 @@ const createError = (resp) => {
 };
 
 const handleRequest = (resp) => {
-	console.log(1111);
-	// console.log('status==========',status,'============status');
+	// console.log(1111);
+	console.log('status==========',resp.status,'============status');
 	// console.log('resp==========', resp.headers['set-cookie'],'============resp');
 	// console.log('rest==========',rest.headers['set-cookie'],'============rest');
 	// console.log('rest==========',rest,'============rest');
@@ -57,6 +57,9 @@ module.exports = () => {
 		},
 		async getCitys () {
 			return handleRequest(await request.get(api.getCities));
+		},
+		async getUserInfo() {
+			return handleRequest(await request.get(api.userinfo))
 		}
 	};
 };

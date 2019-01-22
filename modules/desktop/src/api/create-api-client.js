@@ -16,5 +16,8 @@ let loginReq = request();
 export default {
 	login (data) {
 		return reqR.post(api.login, data);
+	},
+	getUserInfo () {
+		return reqR.get(api.userinfo)
 	}
 };
