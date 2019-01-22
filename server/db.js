@@ -2,27 +2,12 @@ const axios = require('axios');
 const qs = require('qs');
 const api = require('../public/js/api');
 const config = require('../public/js/app.config');
+const req = require('./request')
 // import api from '../api'
 
-const request = axios.create({
-	baseURL: config.baseUrl,
-	withCredentials: true
-	// transformRequest: [function(data) {
-	//     return qs.stringify(data)
-	// }]
-});
+const request = req(config.baseUrl);
 
-const loginRequest = axios.create({
-	baseURL: config.host,
-	// headers: {
-	//   'Content-Type': 'application/x-www-form-urlencoded'
-	// },
-	withCredentials: true,
-	transformRequest: [function(data) {
-		// data.ad_session = '121313'
-		return qs.stringify(data);
-	}]
-});
+const loginRequest = req(config.host);
 
 
 const createError = (resp) => {
@@ -34,7 +19,7 @@ const createError = (resp) => {
 
 const handleRequest = (resp) => {
 	// console.log(1111);
-	console.log('status==========',resp.status,'============status');
+	console.log('status==========',resp,'============status');
 	// console.log('resp==========', resp.headers['set-cookie'],'============resp');
 	// console.log('rest==========',rest.headers['set-cookie'],'============rest');
 	// console.log('rest==========',rest,'============rest');

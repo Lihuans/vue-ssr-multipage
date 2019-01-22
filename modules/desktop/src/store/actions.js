@@ -70,7 +70,7 @@ export default {
               const data = res.msg;
               // console.log(data);
               commit('doLogin', data);
-              resolve();
+              resolve(res);
           }).catch(err => {
               reject(err)
           })

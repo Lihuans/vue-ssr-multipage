@@ -3,6 +3,7 @@ import qs from 'qs';
 
 function requestServer(baseUrl) {
 	const request = axios.create({
+        withCredentials: true,
 		headers: {'Content-Type': 'application/json'},
 		transformRequest: [function(data) {
 		  data = qs.stringify(data)
@@ -15,16 +16,16 @@ function requestServer(baseUrl) {
 	// request.defaults.headers.post['Content-Type'] = 'application/json';
 	// request拦截器
 	request.interceptors.request.use(config => {
-		if(config.method=='get'){
-			config.params = {
-				build_time: new Date().getTime(),
-				...config.params
-			};
-		}//解决ie，Safari浏览器get缓存
-		console.log('AuthorizationAuthorization==',request.defaults.headers.common['Authorization'])
-		if(localStorage.getItem('token')) {
-			config.headers.common['Authorization'] = localStorage.getItem('token')
-		}
+		// if(config.method=='get'){
+		// 	config.params = {
+		// 		build_time: new Date().getTime(),
+		// 		...config.params
+		// 	};
+		// }//解决ie，Safari浏览器get缓存
+		// console.log('AuthorizationAuthorization==',request.defaults.headers.common['Authorization'])
+		// if(localStorage.getItem('token')) {
+		// 	config.headers.common['Authorization'] = localStorage.getItem('token')
+		// }
 
 		// if (store.getters.token) {
 		//   config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
@@ -49,14 +50,12 @@ function requestServer(baseUrl) {
     */
 			// store.state.loading = false;
 			const res = response.data;
+			console.log(res)
 			// res 就是业务写的返回了，就是{code:100,msg:'数据'}
 			if (res.code !== undefined && res.code !== 100) {
 				return Promise.reject(res);
 			} else if(res.code === 401) {
-				console.log('reee===',res.code)
-				let current_url = encodeURIComponent(window.location.href);
-				window.location.href = `/logins?next=${current_url}`
-				return res;
+				return Promise.reject(res);
 			} else {
 				return res;
 			}
@@ -64,14 +63,14 @@ function requestServer(baseUrl) {
 		error => {
 			console.log('err' + error); // for debug
 			console.log('errcode' + error.response.status); // for debug
-			if(error.response.status == 401){
-				let current_url = encodeURIComponent(window.location.href);
-				window.location.href = `/login?next=${current_url}`;
-				return;
-			} else if (error.response.status == 403){
-				window.location.href = '/noroot';
-				return;
-			}
+			// if(error.response.status == 401){
+			// 	let current_url = encodeURIComponent(window.location.href);
+			// 	window.location.href = `/login?next=${current_url}`;
+			// 	return;
+			// } else if (error.response.status == 403){
+			// 	window.location.href = '/noroot';
+			// 	return;
+			// }
 			return Promise.reject(error);
 		}
 	);
@@ -80,4 +79,4 @@ function requestServer(baseUrl) {
 
 }
 
-export default requestServer;
+module.exports = requestServer;
