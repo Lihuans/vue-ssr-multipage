@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const utils = require('./utils');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
@@ -41,12 +40,21 @@ module.exports = function(moduleName) {
           exclude: /node_modules/
         },
         {
-          test: /\.(png|jpg|gif|svg)$/,
+          test: /\.(png|jpg|gif|svg|ttf|woff)$/,
           loader: "url-loader",
           options: {
             limit: 10000,
             name: "[name].[ext]?[hash]"
           }
+        },
+        {
+            test: /\.css$/,
+            use: isProd
+                ? ExtractTextPlugin.extract({
+                    use: "css-loader",
+                    fallback: "vue-style-loader"
+                  })
+                : ["vue-style-loader", "css-loader"],
         },
         {
           test: /\.styl(us)?$/,

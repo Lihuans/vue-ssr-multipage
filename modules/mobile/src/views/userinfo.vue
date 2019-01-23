@@ -1,12 +1,10 @@
 <template>
-    <div>
-        登录页
-    </div>
+    <div>我是用户信息页</div>
 </template>
 
 <script>
     export default {
-        name: "login"
+        name: "userinfo"
     }
 </script>
 

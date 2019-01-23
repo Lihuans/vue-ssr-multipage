@@ -172,8 +172,11 @@ export default {
 
 <style lang="stylus" scoped>
 .resume-wrap
-  width 770px
+  margin auto
+  padding 30px
+  width 1080px
   background-color: #fff
+  box-sizing border-box
   /*form*/
     /*width 540px*/
     /*margin auto*/

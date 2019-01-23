@@ -100,7 +100,7 @@ const serve = (path, cache) =>
   });
 
 app.use(compression({ threshold: 0 }));
-app.use(favicon("./public/logo-48.png"));
+app.use(favicon("./public/img/favicon.ico"));
 app.use("/public", serve("./public", true));
 app.use("/manifest.json", serve("./manifest.json", true));
 app.use("/dist", (req, res) => {

@@ -1,12 +1,10 @@
 <template>
-    <div>
-        登录页
-    </div>
+    <div>我是首页</div>
 </template>
 
 <script>
     export default {
-        name: "login"
+        name: "index"
     }
 </script>
 
