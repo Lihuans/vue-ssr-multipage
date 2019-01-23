@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const utils = require('./utils');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
@@ -16,6 +17,7 @@ module.exports = function(moduleName) {
       filename: "[name].[chunkhash].js"
     },
     resolve: {
+      extensions: ['.js', '.vue', '.json'],
       alias: {
         public: path.resolve(__dirname, "../public"),
         '@': '..'

@@ -4,10 +4,10 @@ import qs from 'qs';
 function requestServer(baseUrl) {
 	const request = axios.create({
 		headers: {'Content-Type': 'application/json'},
-		transformRequest: [function(data) {
-		  data = qs.stringify(data)
-		  return data
-		}]
+		// transformRequest: [function(data) {
+		//   data = qs.stringify(data)
+		//   return data
+		// }]
 	});
 	if(baseUrl) {
 		request.defaults.baseURL = baseUrl;
@@ -21,10 +21,10 @@ function requestServer(baseUrl) {
 				...config.params
 			};
 		}//解决ie，Safari浏览器get缓存
-		console.log('AuthorizationAuthorization==',request.defaults.headers.common['Authorization'])
-		if(localStorage.getItem('token')) {
-			config.headers.common['Authorization'] = localStorage.getItem('token')
-		}
+		// console.log('AuthorizationAuthorization==',request.defaults.headers.common['Authorization'])
+		// if(localStorage.getItem('token')) {
+		// 	config.headers.common['Authorization'] = localStorage.getItem('token')
+		// }
 
 		// if (store.getters.token) {
 		//   config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改

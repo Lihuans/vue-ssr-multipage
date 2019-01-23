@@ -16,6 +16,7 @@ export function createRouter () {
     routes: [
       { path: '/logins', component: (resolve) => require(['@/views/login.vue'], resolve) },
       { path: '/userinfos', component: (resolve) => require(['@/views/userinfo.vue'], resolve) },
+      { path: '/index', component: (resolve) => require(['@/views/index.vue'], resolve) },
       { path: '/top/:page(\\d+)?', component: createListView('top') },
       { path: '/new/:page(\\d+)?', component: createListView('new') },
       { path: '/show/:page(\\d+)?', component: createListView('show') },
@@ -23,7 +24,7 @@ export function createRouter () {
       { path: '/job/:page(\\d+)?', component: createListView('job') },
       { path: '/item/:id(\\d+)', component: ItemView },
       { path: '/user/:id', component: UserView },
-      { path: '/', redirect: '/logins' }
+      { path: '/', redirect: '/top' }
     ]
   })
 }

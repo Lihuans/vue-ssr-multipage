@@ -10,7 +10,7 @@ export default function createListView (type) {
     name: `${type}-stories-view`,
 
     asyncData ({ store }) {
-      return store.dispatch('FETCH_LIST_DATA', { type })
+      // return store.dispatch('FETCH_LIST_DATA', { type })
     },
 
     title: camelize(type),
